@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Utama -->
+    <title>Asta Interior | Desain Interior & Furnitur Kustom</title>
+    <meta name="description" content="Asta Interior merancang ruang yang mendefinisikan gaya hidup Anda. Spesialis desain interior dan furnitur kustom berpresisi tinggi.">
+    
+    <!-- Meta Open Graph -->
+    <meta property="og:title" content="Asta Interior | Estetika & Fungsionalitas">
+    <meta property="og:description" content="Wujudkan ruang impian dan perabot kustom Anda dengan presisi tingkat tinggi bersama Asta Interior.">
+    <meta property="og:image" content="Logo Interior Arsitektur ASTA.png">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="Logo Interior Arsitektur ASTA.png" type="image/png">
+    
+    <!-- Mengambil Font Tema Classic Luxury: Marcellus & Jost -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Palet Warna & Font Tema Classic Luxury / Royal Navy */
+        :root {
+            --warna-emas: #D4AF37; /* Emas Klasik Mewah */
+            --warna-emas-gelap: #AA8C2C; /* Emas Tua */
+            --warna-teks: #111C24; /* Biru Navy Sangat Gelap (Midnight Blue) */
+            --warna-abu: #59656F; /* Abu-abu kebiruan (Slate) */
+            --warna-abu-muda: #F0F4F8; /* Putih kebiruan sangat terang */
+            --warna-latar: #FFFFFF; /* Putih Bersih */
+            --warna-putih: #FFFFFF;
+            --font-judul: 'Marcellus', serif;
+            --font-teks: 'Jost', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-teks);
+            background-color: var(--warna-latar);
+            color: var(--warna-teks);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* --- TIPOGRAFI JUDUL --- */
+        h1, h2, h3 {
+            font-family: var(--font-judul);
+            color: var(--warna-teks);
+            font-weight: 400; /* Marcellus didesain terbaik pada weight regular */
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.98); 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            box-shadow: 0 2px 25px rgba(17, 28, 36, 0.05);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease; 
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05); 
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-asta {
+            font-family: var(--font-judul);
+            font-size: 2rem;
+            color: var(--warna-teks);
+            letter-spacing: 2px;
+        }
+
+        .logo-interior {
+            font-family: var(--font-teks);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--warna-emas); 
+            letter-spacing: 4px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--warna-teks);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--warna-emas);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1001; 
+        }
+
+        .hamburger .bar {
+            width: 26px;
+            height: 2px;
+            background-color: var(--warna-teks);
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-asta { font-size: 1.5rem; }
+            .logo-interior { font-size: 0.75rem; }
+            .hamburger { display: flex; }
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--warna-latar);
+                border-top: 1px solid var(--warna-abu-muda);
+                box-shadow: 0 10px 15px -5px rgba(17, 28, 36, 0.05);
+                transform: translateY(-20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                gap: 25px;
+            }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); background-color: var(--warna-emas); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background-color: var(--warna-emas); }
+        }
+
+        section {
+            padding: 120px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .garis-bawah {
+            width: 60px;
+            height: 2px;
+            background-color: var(--warna-emas); 
+            margin: 0 auto 30px auto;
+        }
+
+        .deskripsi-seksi {
+            color: var(--warna-abu);
+            margin-bottom: 60px;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-utama {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--warna-teks);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-family: var(--font-teks);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            transition: all 0.4s ease;
+            border: 1px solid var(--warna-teks);
+        }
+
+        .btn-utama:hover {
+            background-color: var(--warna-teks);
+            color: var(--warna-putih);
+        }
+
+        /* --- DESAIN BERANDA (HERO) --- */
+        #beranda {
+            position: relative;
+            padding: 180px 5% 140px; 
+            min-height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 1.5s ease-in-out, transform 7s ease-out; 
+            transform: scale(1);
+        }
+
+        .slide-bg.aktif {
+            opacity: 1;
+            transform: scale(1.08); 
+        }
+
+        .overlay-beranda {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(17, 28, 36, 0.75); /* Overlay Biru Navy pekat */
+            z-index: 1;
+        }
+
+        .konten-beranda {
+            position: relative;
+            z-index: 2; 
+            max-width: 900px;
+        }
+
+        .konten-beranda h1 {
+            font-size: 4.2rem;
+            margin-bottom: 25px;
+            color: var(--warna-putih); 
+            line-height: 1.2;
+        }
+
+        .konten-beranda .deskripsi-seksi {
+            color: var(--warna-abu-muda); 
+            font-size: 1.2rem;
+        }
+
+        .konten-beranda .btn-utama {
+            color: var(--warna-emas);
+            border-color: var(--warna-emas);
+        }
+        
+        .konten-beranda .btn-utama:hover {
+            background-color: var(--warna-emas);
+            color: var(--warna-teks);
+        }
+
+        /* --- LAYANAN EKSKLUSIF --- */
+        .grid-layanan-premium {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            text-align: left; 
+        }
+
+        .kartu-layanan-premium {
+            background-color: var(--warna-putih);
+            padding: 50px 40px;
+            border: 1px solid var(--warna-abu-muda);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .kartu-layanan-premium::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 3px;
+            background-color: var(--warna-emas); 
+            transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 2;
+        }
+
+        .kartu-layanan-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(17, 28, 36, 0.08);
+            border-color: transparent;
+        }
+
+        .kartu-layanan-premium:hover::before {
+            width: 100%;
+        }
+
+        .header-layanan {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .nomor-layanan {
+            font-size: 4rem;
+            color: var(--warna-abu-muda);
+            line-height: 0.8;
+            transition: color 0.4s ease;
+            font-family: var(--font-judul); 
+        }
+
+        .kartu-layanan-premium:hover .nomor-layanan {
+            color: rgba(212, 175, 55, 0.15); /* Emas transparan saat hover */
+        }
+
+        .ikon-layanan-svg {
+            width: 42px;
+            height: 42px;
+            color: var(--warna-emas); 
+            stroke-width: 1.2;
+        }
+
+        .kartu-layanan-premium h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .kartu-layanan-premium p {
+            color: var(--warna-abu);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* --- INOVASI & PRODUK --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .kartu-inovasi {
+            background-color: var(--warna-putih);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(17, 28, 36, 0.04);
+            border: 1px solid var(--warna-abu-muda);
+            transition: transform 0.4s ease;
+            text-align: left;
+        }
+
+        .kartu-inovasi:hover {
+            transform: translateY(-10px);
+        }
+
+        .gambar-inovasi {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .gambar-inovasi img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .kartu-inovasi:hover .gambar-inovasi img {
+            transform: scale(1.05);
+        }
+
+        .konten-inovasi { padding: 40px 30px; }
+        .konten-inovasi h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .konten-inovasi p { color: var(--warna-abu); font-size: 1.05rem; }
+
+        /* --- PORTOFOLIO --- */
+        #portofolio {
+            background-color: var(--warna-abu-muda);
+            max-width: 100%;
+        }
+
+        .item-portofolio {
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+        }
+
+        .item-portofolio img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .item-portofolio:hover img {
+            transform: scale(1.08);
+        }
+        
+        .overlay-portofolio {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(17, 28, 36, 0.9) 0%, rgba(0,0,0,0) 100%); /* Gradasi Navy */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px 30px;
+        }
+        
+        .item-portofolio:hover .overlay-portofolio { opacity: 1; }
+        .overlay-portofolio h3 { 
+            color: var(--warna-emas); /* Judul emas di portofolio */
+            font-size: 1.5rem; 
+            margin: 0; 
+            transform: translateY(20px); 
+            transition: transform 0.5s ease; 
+        }
+        .item-portofolio:hover .overlay-portofolio h3 { transform: translateY(0); }
+
+        /* --- TESTIMONI --- */
+        .kartu-testimoni {
+            background-color: var(--warna-putih);
+            padding: 50px 40px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid var(--warna-abu-muda);
+            text-align: left;
+        }
+        .kartu-testimoni::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 120px;
+            color: rgba(212, 175, 55, 0.1); /* Emas transparan */
+            font-family: var(--font-judul);
+            z-index: -1;
+            line-height: 1;
+        }
+        .isi-testimoni { font-size: 1.1rem; color: var(--warna-teks); margin-bottom: 30px; font-style: italic; }
+        .nama-klien { font-family: var(--font-judul); font-size: 1.3rem; color: var(--warna-teks); margin: 0; }
+        .peran-klien { font-size: 0.85rem; color: var(--warna-emas); font-weight: 500; margin: 5px 0 0 0; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* --- KONTAK --- */
+        .kontak-info {
+            background-color: var(--warna-putih);
+            padding: 60px 50px;
+            max-width: 650px;
+            margin: 0 auto;
+            border: 1px solid var(--warna-abu-muda);
+            text-align: left;
+        }
+
+        .grup-form { margin-bottom: 25px; }
+        .grup-form label { display: block; margin-bottom: 10px; font-weight: 500; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--warna-abu); }
+        .grup-form input, .grup-form textarea {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid #CCC;
+            background-color: transparent;
+            font-family: var(--font-teks);
+            font-size: 1.05rem;
+            transition: border-color 0.3s ease;
+            color: var(--warna-teks);
+        }
+        .grup-form input:focus, .grup-form textarea:focus { outline: none; border-bottom-color: var(--warna-emas); }
+
+        .btn-wa {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--warna-emas); 
+            color: var(--warna-teks); /* Teks Navy di atas tombol Emas */
+            padding: 18px 40px;
+            border: none;
+            font-family: var(--font-teks);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-top: 30px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn-wa:hover {
+            background-color: var(--warna-emas-gelap);
+            color: var(--warna-putih);
+        }
+
+        /* --- FOOTER --- */
+        .footer-utama {
+            background-color: var(--warna-teks); /* Midnight Blue */
+            color: #A4B2BC; /* Biru abu-abu terang */
+            padding: 80px 5% 20px;
+            font-size: 0.95rem;
+            border-top: 3px solid var(--warna-emas);
+        }
+
+        .footer-kontainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            text-align: left;
+        }
+
+        .footer-kolom h3 {
+            color: var(--warna-emas); /* Judul Emas di footer */
+            font-family: var(--font-judul);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-kolom p { margin-bottom: 15px; line-height: 1.8; display: flex; align-items: flex-start; gap: 10px; }
+
+        .footer-logo {
+            height: 55px;
+            margin-bottom: 25px;
+        }
+
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 30px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            font-size: 0.85rem; 
+            letter-spacing: 1px;
+        }
+
+        /* --- ANIMASI --- */
+        .elemen-animasi {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .elemen-animasi.tampil { opacity: 1; transform: translateY(0); }
+
+        /* --- WHATSAPP MENGAMBANG --- */
+        .whatsapp-mengambang {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366; 
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(17, 28, 36, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .whatsapp-mengambang:hover { transform: translateY(-5px) scale(1.05); background-color: #20BA56; }
+        .whatsapp-mengambang svg { width: 32px; height: 32px; fill: currentColor; }
+
+        .btn-scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 35px;
+            background-color: var(--warna-emas); 
+            color: var(--warna-teks);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(17, 28, 36, 0.15);
+            z-index: 999;
+            cursor: pointer;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-scroll-top.tampil { opacity: 1; visibility: visible; transform: translateY(0); }
+        .btn-scroll-top:hover { background-color: var(--warna-emas-gelap); color: var(--warna-putih); transform: translateY(-5px); }
+
+        @media (max-width: 768px) {
+            #beranda { padding: 150px 5% 100px; min-height: 80vh; }
+            .konten-beranda h1 { font-size: 2.8rem; }
+            section h2 { font-size: 2.2rem; }
+            section { padding: 80px 20px; }
+            .kontak-info { padding: 40px 25px; }
+            .whatsapp-mengambang { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .whatsapp-mengambang svg { width: 28px; height: 28px; }
+            .btn-scroll-top { bottom: 85px; right: 22px; width: 45px; height: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- KEPALA & MENU -->
+    <header>
+        <a href="#beranda" class="logo-container">
+            <img src="Logo Interior Arsitektur ASTA.png" alt="Logo Asta Interior" class="logo-img">
+            <div class="logo-text">
+                <span class="logo-asta">ASTA</span>
+                <span class="logo-interior">INTERIOR</span>
+            </div>
+        </a>
+        
+        <div class="hamburger" id="ikon-hamburger">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+
+        <nav id="menu-navigasi">
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#inovasi">Inovasi</a></li>
+                <li><a href="#portofolio">Portofolio</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- BAGIAN BERANDA DENGAN SLIDESHOW BACKGROUND -->
+        <section id="beranda">
+            <div class="slide-bg aktif" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            
+            <div class="overlay-beranda"></div>
+
+            <div class="konten-beranda">
+                <h1 class="elemen-animasi">Solusi Interior dan Furniture dalam Satu Kesatuan</h1>
+                <p class="deskripsi-seksi elemen-animasi">Dari perencanaan ruang hingga pembuatan furniture custom, ASTA Interior menghadirkan solusi terpadu yang mengutamakan desain, kenyamanan, efisiensi ruang, dan kebutuhan setiap klien.</p>
+                <a href="#kontak" class="btn-utama elemen-animasi">Jadwalkan Konsultasi</a>
+            </div>
+        </section>
+
+        <!-- BAGIAN LAYANAN EKSKLUSIF -->
+        <section id="layanan">
+            <h2 class="elemen-animasi">Layanan Eksklusif</h2>
+            <div class="garis-bawah elemen-animasi"></div>
+            <p class="deskripsi-seksi elemen-animasi">Pendekatan yang disesuaikan untuk setiap detail ruangan Anda, menghadirkan harmoni sempurna antara keindahan dan kegunaan.</p>
+            
+            <div class="grid-layanan-premium">
+                <!-- Kartu Layanan 1 -->
+                <div class="kartu-layanan-premium elemen-animasi">
+                    <div class="header-layanan">
+                        <span class="nomor-layanan">01</span>
+                        <svg class="ikon-layanan-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg> 
+                    </div>
+                    <h3>Desain Interior</h3>
+                    <p>Perancangan konsep tata ruang menyeluruh, visualisasi 3D, hingga eksekusi akhir untuk area komersial maupun hunian Anda dengan gaya yang berkarakter.</p>
+                </div>
+                
+                <!-- Kartu Layanan 2 -->
+                <div class="kartu-layanan-premium elemen-animasi">
+                    <div class="header-layanan">
+                        <span class="nomor-layanan">02</span>
+                        <svg class="ikon-layanan-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9V6a2 2 0 00-2-2H7a2 2 0 00-2 2v3m14 0v5a2 2 0 01-2 2h-2m-8-2H5a2 2 0 01-2-2V9m16 0H5m4 9v2m6-2v2" />
+                        </svg> 
+                    </div>
+                    <h3>Furnitur Kustom</h3>
+                    <p>Pembuatan perabot yang menyesuaikan dimensi presisi ruangan dan selera Anda, dikerjakan oleh pengrajin berpengalaman menggunakan material premium.</p>
+                </div>
+                
+                <!-- Kartu Layanan 3 -->
+                <div class="kartu-layanan-premium elemen-animasi">
+                    <div class="header-layanan">
+                        <span class="nomor-layanan">03</span>
+                        <svg class="ikon-layanan-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+                        </svg> 
+                    </div>
+                    <h3>Renovasi Ruangan</h3>
+                    <p>Pemugaran dan penataan ulang area spesifik untuk memberikan kesegaran baru, fungsi yang lebih optimal, serta integrasi gaya modern di ruangan Anda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INOVASI & PRODUK SPESIAL -->
+        <section id="inovasi">
+            <h2 class="elemen-animasi">Inovasi & Produk Spesial</h2>
+            <div class="garis-bawah elemen-animasi"></div>
+            <p class="deskripsi-seksi elemen-animasi">Menggabungkan teknologi desain presisi dengan kreativitas tanpa batas untuk menghadirkan mahakarya furnitur yang fungsional, estetis, dan revolusioner.</p>
+            <div class="grid-container" style="max-width: 1000px; margin: 0 auto;">
+                <div class="kartu-inovasi elemen-animasi">
+                    <div class="gambar-inovasi">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blueprint 3D Parametrik" loading="lazy">
+                    </div>
+                    <div class="konten-inovasi">
+                        <h3>Perencanaan Desain & Visualisasi 3D</h3>
+                        <p>Setiap ruang berawal dari sebuah gagasan. Kami menerjemahkan kebutuhan dan preferensi Anda ke dalam perencanaan tata ruang serta visualisasi 3D yang membantu memperlihatkan konsep, proporsi, dan perpaduan material sebelum proses pengerjaan dimulai.</p>
+                    </div>
+                </div>
+                <div class="kartu-inovasi elemen-animasi">
+                    <div class="gambar-inovasi">
+                        <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Furnitur Tematik Eksklusif" loading="lazy">
+                    </div>
+                    <div class="konten-inovasi">
+                        <h3>Furniture Custom</h3>
+                        <p>Kami merancang furniture yang menyatu dengan konsep interior, ukuran ruang, dan kebutuhan Anda. Mulai dari meja, lemari, kabinet, hingga furniture khusus, setiap desain mengutamakan kenyamanan, pemanfaatan ruang, dan detail yang selaras dengan keseluruhan interior.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTOFOLIO -->
+        <section id="portofolio">
+            <h2 class="elemen-animasi">Mahakarya Asta</h2>
+            <div class="garis-bawah elemen-animasi"></div>
+            <p class="deskripsi-seksi elemen-animasi">Jelajahi koleksi proyek interior dan pembuatan furnitur terbaik kami yang telah terwujud.</p>
+            <div class="grid-container" style="max-width: 1200px; margin: 0 auto;">
+                <div class="item-portofolio elemen-animasi">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desain Ruang Keluarga" loading="lazy">
+                    <div class="overlay-portofolio"><h3>Ruang Keluarga Minimalis</h3></div>
+                </div>
+                <div class="item-portofolio elemen-animasi">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Furnitur Dapur Elegan" loading="lazy">
+                    <div class="overlay-portofolio"><h3>Set Dapur Kustom (Aksen Kayu)</h3></div>
+                </div>
+                <div class="item-portofolio elemen-animasi">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Furnitur Sofa" loading="lazy">
+                    <div class="overlay-portofolio"><h3>Lounge Komersial Premium</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI -->
+        <section id="testimoni">
+            <h2 class="elemen-animasi">Apa Kata Klien Kami</h2>
+            <div class="garis-bawah elemen-animasi"></div>
+            <p class="deskripsi-seksi elemen-animasi">Kepercayaan dan kepuasan klien adalah prioritas utama Asta Interior.</p>
+            <div class="grid-container">
+                <div class="kartu-testimoni elemen-animasi"><p class="isi-testimoni">"Presisi perabot dari Asta Interior sangat luar biasa. Meja sudut pesanan saya muat dengan sempurna di ruangan berkat desain 3D yang sangat akurat di awal."</p><p class="nama-klien">Bapak Hendra</p><p class="peran-klien">Klien Furnitur Kustom</p></div>
+                <div class="kartu-testimoni elemen-animasi"><p class="isi-testimoni">"Ruang tamu kami dirombak menjadi jauh lebih luas, elegan, dan estetik. Pemilihan palet warna dan tekstur kayunya sangat cerdas!"</p><p class="nama-klien">Ibu Siska & Keluarga</p><p class="peran-klien">Klien Desain Interior</p></div>
+                <div class="kartu-testimoni elemen-animasi"><p class="isi-testimoni">"Pusat hiburan di rumah saya menjadi sorotan utama berkat integrasi meja mahjong otomatisnya. Teman-teman saya sangat takjub dengan kemewahannya."</p><p class="nama-klien">Kelvin</p><p class="peran-klien">Klien Ruang Rekreasi</p></div>
+            </div>
+        </section>
+
+        <!-- KONTAK -->
+        <section id="kontak">
+            <h2 class="elemen-animasi">Mari Berdiskusi</h2>
+            <div class="garis-bawah elemen-animasi"></div>
+            <p class="deskripsi-seksi elemen-animasi">Wujudkan ruang impian Anda bersama Asta Interior. Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda melalui WhatsApp.</p>
+            <div class="kontak-info elemen-animasi">
+                <form id="formKontakWa">
+                    <div class="grup-form"><label for="nama">Nama Lengkap</label><input type="text" id="nama" name="nama" placeholder="Tuliskan nama Anda di sini..." required></div>
+                    <div class="grup-form"><label for="telepon">Nomor WhatsApp</label><input type="text" id="telepon" name="telepon" placeholder="Contoh: 081234567890" required></div>
+                    <div class="grup-form"><label for="pesan">Detail Proyek</label><textarea id="pesan" name="pesan" rows="4" placeholder="Ceritakan gaya interior atau furnitur impian Anda..." required></textarea></div>
+                    <button type="submit" class="btn-wa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                        </svg>
+                        Mulai Konsultasi
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-utama">
+        <div class="footer-kontainer">
+            <div class="footer-kolom">
+                <img src="Logo Interior Arsitektur ASTA.png" alt="Asta Interior" class="footer-logo">
+                <p>Crafted with Precision, Designed with Purpose.</p>
+                <p>Pengerjaan presisi dalam setiap sudut ruang melalui desain interior modern dan furnitur kustom berkualitas.</p>
+            </div>
+            <div class="footer-kolom">
+                <h3>Hubungi Kami</h3>
+                <p><span>📍</span> Jl. Mutiara Komp. 24 No. 10 B, Kota Pekanbaru, Riau</p>
+                <p><span>📞</span> +62 851-7240-7248</p>
+                <p><span>✉️</span> halo@astainterior.com</p>
+                <h3 style="margin-top: 40px;">Jam Operasional</h3>
+                <p>Senin - Jumat: 09.00 - 17.00 WIB</p>
+                <p>Sabtu: 10.00 - 14.00 WIB</p>
+            </div>
+            <div class="footer-kolom">
+                <h3>Lokasi Showroom</h3>
+                <!-- Peta diubah menjadi hitam putih agar selaras dengan kemewahan footer Navy -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.62002341913!2d101.44777931475355!3d0.5261884996144883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ab806909697b%3A0x6e76cfebdfab0d9c!2sPekanbaru%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sid!2sid!4v1690000000000!5m2!1sid!2sid" width="100%" height="200" style="border:0; border-radius: 4px; filter: grayscale(100%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Asta Interior & Furnitur. Semua Hak Dilindungi.</p></div>
+    </footer>
+
+    <!-- Tombol WhatsApp -->
+    <a href="https://wa.me/6285172407248?text=Halo%20Asta%20Interior,%20saya%20ingin%20berkonsultasi%20mengenai%20proyek%20saya..." class="whatsapp-mengambang" target="_blank" aria-label="Chat WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- Tombol Kembali ke Atas -->
+    <button id="btn-ke-atas" class="btn-scroll-top" aria-label="Kembali ke atas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('ikon-hamburger');
+        const menuNavigasi = document.getElementById('menu-navigasi');
+        const tautanMenu = document.querySelectorAll('#menu-navigasi ul li a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            menuNavigasi.classList.toggle('active');
+        });
+
+        tautanMenu.forEach(tautan => {
+            tautan.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                menuNavigasi.classList.remove('active');
+            });
+        });
+
+        // Slideshow Background Beranda
+        const slides = document.querySelectorAll('.slide-bg');
+        let slideSaatIni = 0;
+        
+        if (slides.length > 0) {
+            setInterval(() => {
+                slides[slideSaatIni].classList.remove('aktif');
+                slideSaatIni = (slideSaatIni + 1) % slides.length;
+                slides[slideSaatIni].classList.add('aktif');
+            }, 5000); 
+        }
+
+        // Animasi Fade-In on Scroll
+        const elemenAnimasi = document.querySelectorAll('.elemen-animasi');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('tampil');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        elemenAnimasi.forEach(el => scrollObserver.observe(el));
+
+        // Formulir ke WhatsApp
+        document.getElementById('formKontakWa').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const nama = document.getElementById('nama').value;
+            const telepon = document.getElementById('telepon').value;
+            const pesan = document.getElementById('pesan').value;
+            const nomorWA = '6285172407248'; 
+            const teksWA = `Halo Asta Interior,\nSaya *${nama}*.\nKontak: ${telepon}\n\nPesan:\n${pesan}`;
+            const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
+            window.open(urlWA, '_blank');
+        });
+
+        // Logika Tombol Kembali ke Atas
+        const btnKeAtas = document.getElementById('btn-ke-atas');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                btnKeAtas.classList.add('tampil');
+            } else {
+                btnKeAtas.classList.remove('tampil');
+            }
+        });
+        btnKeAtas.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
